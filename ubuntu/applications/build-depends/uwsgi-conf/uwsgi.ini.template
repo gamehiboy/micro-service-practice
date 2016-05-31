@@ -1,0 +1,18 @@
+[uwsgi]
+socket=127.0.0.1:9090
+socket-timeout=300
+reload-mercy=10
+vacuum=true
+max-requests=5000
+limit-as=512
+buffer-size=30000
+memory-report=true
+chdir=${APP_PATH}/
+wsgi-file=mysite/wsgi.py
+master=true
+processes=2
+enable-threads=true
+threads=4
+# stats=127.0.0.1:9191
+# daemonize=${APP_PATH}/logs/uwsgi.log
+logto=${APP_PATH}/logs/uwsgi.log

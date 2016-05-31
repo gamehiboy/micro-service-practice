@@ -1,0 +1,20 @@
+# 1. MySQL+uWSGI+Django Web Application
+#Django==1.8.3
+#MySQL-python==1.2.5
+#uWSGI==2.0.11.2
+
+# 2. Template Engine
+Mako==1.0.3
+
+# 3. Django REST Framework
+#djangorestframework==3.2.2          # djangorestframework
+#Markdown==2.6.6                     # Markdown support for the browsable API.
+#django-filter==0.10.0               # Filtering support.
+#django-guardian==1.4.2              # Object level permissions support.
+#django-crispy-forms==1.6.0          # Improved HTML display for filtering.
+
+# 4. Django OAuth Toolkit
+#django-oauth-toolkit==0.10.0        # oauth2_provider, recommended package for OAuth 2.0 support
+
+# 5. requests for HTTP Client
+requests==2.10.0

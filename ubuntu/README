@@ -1,0 +1,12 @@
+docker rm -f $(docker ps -aq)
+docker ps | grep "ubuntu" | awk '{ print $1 }' | xargs docker rm -f
+
+docker build \
+    --build-arg TIME_ZONE="Asia/shanghai" \
+    --build-arg NTP_SERVER="10.7.7.1" \
+    --build-arg APP_PATH="/opt/applications" \
+    -t 10.5.24.46:80/nscloud/ubuntu:2.0 .
+
+docker run -it -d --name=ubuntu --privileged=true -p 2222:22 \
+    -e PARAM_TEST="helloworld" \
+    10.5.24.46:80/nscloud/ubuntu:2.0

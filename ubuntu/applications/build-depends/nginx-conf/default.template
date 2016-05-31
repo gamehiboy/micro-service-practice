@@ -1,0 +1,87 @@
+upstream uwsgi_host {
+    server 127.0.0.1:9090;
+}
+server {
+    listen                  443;
+    charset                 utf-8;
+    ssl                     on;
+    ssl_certificate         ${APP_PATH}/server-config/nginx/server.crt;
+    ssl_certificate_key     ${APP_PATH}/server-config/nginx/server.key;
+    
+    access_log ${APP_PATH}/logs/access.log;
+    error_log ${APP_PATH}/logs/error.log;
+    
+    location ~* ^.+.(html|htm)$ {
+       expires 5d;
+       root ${APP_PATH}/template;
+    }
+    location /static {
+        expires 5d;
+        alias ${APP_PATH}/static;
+    }
+    location / {
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        #client_max_body_size 10m;
+        #client_body_buffer_size 128k;
+        #proxy_connect_timeout 90;
+        #proxy_read_timeout 90;
+        #proxy_buffer_size 4k;
+        #proxy_buffers  6  32k;
+        #proxy_busy_buffers_size 64k;
+        #proxy_temp_file_write_size 64k;
+        
+        uwsgi_pass uwsgi_host;
+        include    uwsgi_params;
+    }
+    location ^(.*)\.favicon.ico$ {
+        log_not_found off;
+    }
+    location ~ /\.(ht|svn|git) {  
+        deny all;
+    }
+}
+
+server {
+    listen                  80;
+    charset                 utf-8;
+    
+    access_log ${APP_PATH}/logs/access.log;
+    error_log ${APP_PATH}/logs/error.log;
+    
+    location ~* ^.+.(html|htm)$ {
+       expires 5d;
+       root ${APP_PATH}/template;
+    }
+    location /static {
+        expires 5d;
+        alias ${APP_PATH}/static;
+    }
+    location / {
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        #client_max_body_size 10m;
+        #client_body_buffer_size 128k;
+        #proxy_connect_timeout 90;
+        #proxy_read_timeout 90;
+        #proxy_buffer_size 4k;
+        #proxy_buffers  6  32k;
+        #proxy_busy_buffers_size 64k;
+        #proxy_temp_file_write_size 64k;
+        
+        uwsgi_pass uwsgi_host;
+        include    uwsgi_params;
+    }
+    location ^(.*)\.favicon.ico$ {
+        log_not_found off;
+    }
+    location ~ /\.(ht|svn|git) {  
+        deny all;
+    }
+}
+
+
