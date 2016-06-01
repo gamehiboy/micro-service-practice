@@ -3,11 +3,23 @@ docker ps | grep "mysql" | awk '{ print $1 }' | xargs docker rm -f
 
 docker build -t 10.5.24.46:80/nscloud/mysql:2.0 .
 
+# 不需要执行SQL脚本
 docker run -d --name=mysql -it -p 3306:3306 -p 2222:22 \
     -e MYSQL_ROOT_PASSWORD="Admin@123" \
     -e MYSQL_DATABASE="db_ansible" \
     -e MYSQL_USER="mysite" \
     -e MYSQL_PASSWORD="Admin@123" \
+    -v /opt/fileserver/mysql-test:/var/lib/mysql \
+    10.5.24.46:80/nscloud/mysql:2.0
+
+# 需要执行SQL脚本, SVN_REPO_URL为SQL文件路径, SVN_REPO_VERSION为SQL文件版本，默认为HEAD, 即最新
+docker run -d --name=mysql -it -p 3306:3306 -p 2222:22 \
+    -e MYSQL_ROOT_PASSWORD="Admin@123" \
+    -e MYSQL_DATABASE="db_ansible" \
+    -e MYSQL_USER="mysite" \
+    -e MYSQL_PASSWORD="Admin@123" \
+    -e SVN_REPO_URL="https://192.168.5.246/svn/cloud/GalaxyManager/branches/0.1/open-django-rest/mysql/5.6/applications/deploy/scripts/test.sql" \
+    -e SVN_REPO_VERSION="HEAD" \
     -v /opt/fileserver/mysql-test:/var/lib/mysql \
     10.5.24.46:80/nscloud/mysql:2.0
 

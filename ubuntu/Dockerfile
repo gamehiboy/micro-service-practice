@@ -81,7 +81,8 @@ RUN cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak \
 # 3.10 配置svn-server访问权限
 # configure svn-server
 RUN cp ${APP_PATH}/build-depends/svn-conf/.subversion.tar.gz ~/ \
-    && cd ~/ && tar -xzvf .subversion.tar.gz
+    && cd ~/ && tar -xzvf .subversion.tar.gz \
+    && rm -rf .subversion.tar.gz
 
 # 4. 指定容器需要暴露的端口.
 # EXPOSE ${EXPOSE_PORT}

@@ -44,6 +44,7 @@ VOLUME ["/var/lib/mysql"]
 # 6. 容器启动指令: 如果为LongTime Service，不能起为后台进程.
 COPY ./applications/ ${APP_PATH}
 RUN chmod a+x ${APP_PATH}/build-depends/mysql-conf/mysql_init.sh
+RUN chmod a+x ${APP_PATH}/deploy/scripts/execute_sql.sh
 RUN chmod a+x ${APP_PATH}/run.sh
 CMD ["/bin/bash", "-c", "cd ${APP_PATH} && ./run.sh"]
 
