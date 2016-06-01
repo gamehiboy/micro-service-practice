@@ -47,6 +47,9 @@ RUN locale-gen en_US.UTF-8 \
     && sed -i "1a export LANGUAGE=en_US.UTF-8" ~/.bashrc \
     && sed -i "1a export LC_ALL=en_US.UTF-8" ~/.bashrc \
     && source ~/.bashrc
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
 
 # 3.6 安装apt依赖包
 # apt install packages
