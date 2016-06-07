@@ -27,13 +27,14 @@ COPY ./applications/build-depends/ ${APP_PATH}/build-depends
 # apt install packages
 RUN apt-get update -y \
     && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get install mysql-server -y
+    && apt-get install mysql-server-5.6 -y
 
 # 3.9 配置mysql-server
 # configure mysql-server
 RUN mv /etc/mysql/my.cnf /etc/mysql/my.cnf.bak \
     && cp ${APP_PATH}/build-depends/mysql-conf/my.cnf /etc/mysql/ \
-    && chmod 644 /etc/mysql/my.cnf
+    && chmod 644 /etc/mysql/my.cnf \
+    && cp /etc/mysql/my.cnf /usr/my-default.cnf
 
 # 4. 指定容器需要暴露的端口.
 # EXPOSE ${EXPOSE_PORT}
