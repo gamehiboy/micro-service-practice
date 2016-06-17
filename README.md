@@ -7,6 +7,6 @@
 3. 深入微服务架构的进程间通信：http://blog.daocloud.io/microservices-3/    
 4. 服务发现的可行方案以及实践案例: http://blog.daocloud.io/microservices-4/    
 5. 微服务的事件驱动数据管理: http://blog.daocloud.io/microservices-5/    
-6. 选择微服务部署策略    
+6. 选择微服务部署策略: http://blog.daocloud.io/microservices-6/    
 7. 将单体应用改造为微服务   
 
