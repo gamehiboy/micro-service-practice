@@ -1,0 +1,56 @@
+  upstream krosa_api {
+server 10.6.24.37;
+server 10.6.24.36;
+    }
+    upstream tembin_api {
+server 10.6.24.39;
+server 10.6.24.38;
+    }
+    upstream omais_api {
+server 10.6.24.41;
+server 10.6.24.40;
+    }
+    upstream higos_api {
+server 10.6.24.43;
+server 10.6.24.42;
+    }
+    upstream etau_api {
+server 10.6.24.45;
+server 10.6.24.44;
+    }
+    upstream hato_api {
+server 10.6.24.47;
+server 10.6.24.46;
+    }
+    upstream hagibis_api {
+server 10.6.24.49;
+server 10.6.24.48;
+    }
+    upstream bailu_api {
+server 10.6.24.51;
+server 10.6.24.50;
+    }
+    upstream choi_wan_api {
+server 10.6.24.53;
+server 10.6.24.52;
+    }
+    upstream atsani_api {
+server 10.6.24.35;
+server 10.6.24.34;
+    }
+    upstream nangka_api {
+server 10.6.24.92;
+server 10.6.24.91;
+    }
+    upstream melor_api {
+server 10.6.24.17;
+server 10.6.24.16;
+    }
+    upstream nari_api {
+server 10.6.24.13;
+server 10.6.24.12;
+    }
+    upstream faxai_api {
+server 10.6.24.15;
+server 10.6.24.14;
+    }

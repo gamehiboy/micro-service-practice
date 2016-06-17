@@ -1,0 +1,4 @@
+upstream ips_api {
+    server 10.6.0.63;
+}
+

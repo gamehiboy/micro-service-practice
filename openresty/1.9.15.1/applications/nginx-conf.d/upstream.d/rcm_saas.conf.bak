@@ -1,0 +1,9 @@
+upstream dmanager {
+    server 10.6.0.16;
+}
+
+upstream rcm_saas_api {
+    server 10.6.0.21;
+    server 10.6.0.15;
+}
+

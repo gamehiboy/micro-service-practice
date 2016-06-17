@@ -1,0 +1,146 @@
+server {
+    listen 443;
+    server_name sop.intra.nsfocus.com;
+    charset utf-8;
+    root /opt/disk2/var/www/tembin/;
+    error_page 500 502 503 504 /tembin/views/initcdr/500.html;
+    error_page 403 404 /tembin/views/initcdr/404.html;
+    ssl on;
+    ssl_certificate /opt/disk2/var/serverconfig/server.cert;
+    ssl_certificate_key /opt/disk2/var/serverconfig/server.key;
+    
+    allow 10.0.0.0/8;
+    allow 192.168.0.0/16;
+    deny all;   
+
+    location / {
+        expires off;
+        root /opt/disk2/var/www/tembin;
+    }
+
+    location ^~ /api/tembin/tembin {
+        proxy_pass http://tembin_api;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_redirect off;
+    }
+
+    location ^~ /api/tembin/omais {
+        proxy_pass http://omais_api;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_redirect off;
+    }
+
+    location ^~ /api/tembin/higos {
+        proxy_pass http://higos_api;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_redirect off;
+    }
+
+    location ^~ /api/tembin/etau {
+        proxy_pass http://etau_api;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_redirect off;
+    }
+
+    location ^~ /api/tembin/hato {
+        proxy_pass http://hato_api;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_redirect off;
+    }
+
+    location ^~ /api/tembin/hagibis {
+        proxy_pass http://hagibis_api;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_redirect off;
+    }
+
+    location ^~ /api/tembin/bailu {
+        proxy_pass http://bailu_api;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_redirect off;
+    }
+
+    location ^~ /api/tembin/choi_wan {
+        proxy_pass http://choi_wan_api;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_redirect off;
+    }
+
+    location ^~ /api/tembin/atsani {
+        proxy_pass http://atsani_api;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_redirect off;
+    }
+
+    location ^~ /api/tembin/nangka {
+        proxy_pass http://nangka_api;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_redirect off;
+    }
+
+    location ^~ /api/tembin/melor {
+        proxy_pass http://melor_api;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_redirect off;
+    }
+
+    location ^~ /api/tembin/faxai {
+        proxy_pass http://faxai_api;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_redirect off;
+    }
+
+    location ^~ /api/tembin/nari {
+        proxy_pass http://nari_api;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_redirect off;
+    }
+
+    include /opt/disk2/var/serverconfig/tembin_api/*.conf;
+
+
+    location ^(.*)\.favicon.ico$ {
+        log_not_found off;
+    }
+
+    location ~ /\.svn(.*)$ {
+        return 404;
+    }
+}
+
+server {
+    server_name  sop.intra.nsfocus.com;
+    listen   80;
+    charset                 utf-8;
+    ssl                     off;
+
+    location / {
+        rewrite  ^/(.*) https://sop.intra.nsfocus.com/$1 permanent;
+    }
+}

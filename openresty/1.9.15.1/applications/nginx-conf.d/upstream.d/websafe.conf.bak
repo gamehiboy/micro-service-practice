@@ -1,0 +1,15 @@
+upstream websafe_api {
+server 10.6.0.37;
+}
+
+upstream websafe_tembin {
+server 10.6.0.165;
+}
+
+upstream v1_api {
+server 10.6.0.36;
+}
+
+upstream rcm_api {
+server 10.6.0.167;
+}

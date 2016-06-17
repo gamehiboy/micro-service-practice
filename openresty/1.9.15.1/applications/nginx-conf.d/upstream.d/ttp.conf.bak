@@ -1,0 +1,4 @@
+upstream ttp_api {
+    server 10.6.0.181;
+}
+

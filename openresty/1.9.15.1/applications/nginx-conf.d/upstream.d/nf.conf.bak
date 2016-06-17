@@ -1,0 +1,4 @@
+upstream nf_api {
+    server 10.6.0.147;
+}
+
