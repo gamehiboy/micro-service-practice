@@ -1,5 +1,0 @@
-upstream lan_api {
-    server 10.6.24.73;
-    server 10.6.24.75;
-}
-
