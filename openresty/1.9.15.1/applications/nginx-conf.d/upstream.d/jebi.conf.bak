@@ -1,4 +1,0 @@
-upstream jebi_api {
-    server 10.6.24.83;
-}
-

@@ -1,4 +1,0 @@
- upstream secalert_api {
-	         server 10.241.24.7;
-			             }
-

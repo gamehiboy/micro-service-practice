@@ -1,4 +1,0 @@
-upstream poma_api {
-    server 10.6.24.86;
-}
-

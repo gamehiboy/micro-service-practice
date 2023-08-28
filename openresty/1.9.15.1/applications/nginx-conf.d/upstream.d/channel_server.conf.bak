@@ -1,5 +1,0 @@
-upstream channel_server_api {
-    server 10.6.24.97;
-    server 10.6.24.96;
-}
-
